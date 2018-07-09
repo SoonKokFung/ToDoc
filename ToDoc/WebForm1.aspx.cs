@@ -11,7 +11,6 @@ namespace ToDoc
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void Unnamed_Click(object sender, EventArgs e)
@@ -84,9 +83,6 @@ namespace ToDoc
                 Response.AddHeader("Content-Disposition", "attachment;filename=" + tempFile);
                 Response.TransmitFile(Path.Combine(tempFile.ToString()));
                 Response.End();
-
-                //delete the doc genenrate ... ***optinal
-                File.Delete(tempFile.ToString());
 
             }
 
