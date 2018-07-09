@@ -21,7 +21,6 @@ namespace ToDoc.model
             object visible = true;
             object replace = 2;
             object wrap = 1;
-
             wordApp.Selection.Find.Execute(ref findText,
                         ref matchCase, ref matchWholeWord,
                         ref matchWildCards, ref matchSoundLike,
