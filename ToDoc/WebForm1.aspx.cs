@@ -19,19 +19,18 @@ namespace ToDoc
         }
         private void createWordDocument(object filename)
         {
-            object missing = Missing.Value;
             Application wordApp = new Application();
             Document doc = null;
-
             //check the template is exist or not
             if (File.Exists((string)filename))
             {
                 FindAndReplace findAndReplace = new FindAndReplace();
                 object readOnly = false; //default
                 object isVisible = false;//make the doc visible
+                object replaceAll = WdReplace.wdReplaceAll;
+                object missing = Missing.Value;
 
                 wordApp.Visible = false;
-
                 //open the template
                 doc = wordApp.Documents.Open(ref filename, ref missing, ref readOnly,
                                             ref missing, ref missing, ref missing,
@@ -42,8 +41,6 @@ namespace ToDoc
                 //create a new doc same as the template
                 doc.Activate();
                 //insert the value to the new doc follow the id
-
-                object replaceAll = WdReplace.wdReplaceAll;
                 findAndReplace.replace(wordApp, "<Title>", txtTitle.Text);
                 findAndReplace.replace(wordApp, "<name>", txtName.Text);
 
@@ -68,7 +65,7 @@ namespace ToDoc
 
                 }
 
-                object tempFile = Server.MapPath("Temp/" + DateTime.Now.ToString("hhmmssffffff") + ".docx");
+                object tempFile = Server.MapPath("Temp/" + DateTime.Now.ToString("ddmmyyyyhhmmssffffff") + ".docx");
                 //save the new doc in temp file
                 doc.SaveAs2(ref tempFile, ref missing, ref missing, ref missing,
                     ref missing, ref missing, ref missing,
@@ -83,10 +80,7 @@ namespace ToDoc
                 Response.AddHeader("Content-Disposition", "attachment;filename=" + tempFile);
                 Response.TransmitFile(Path.Combine(tempFile.ToString()));
                 Response.End();
-
             }
-
-
         }
     }
 }
