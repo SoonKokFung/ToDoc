@@ -4,10 +4,6 @@ namespace ToDoc.model
 {
     public class FindAndReplace
     {
-        public FindAndReplace()
-        {
-
-        }
         public void replace(Application wordApp, object findText, object replaceWithText)
         {
             object matchCase = true;

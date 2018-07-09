@@ -40,12 +40,35 @@ namespace ToDoc
                                             ref missing, ref missing, ref missing,
                                             ref missing, ref missing, ref missing, ref missing);
 
-
                 //create a new doc same as the template
                 doc.Activate();
                 //insert the value to the new doc follow the id
+
+                object replaceAll = WdReplace.wdReplaceAll;
                 findAndReplace.replace(wordApp, "<Title>", txtTitle.Text);
                 findAndReplace.replace(wordApp, "<name>", txtName.Text);
+
+                //edit Header and footer
+                foreach (Section section in doc.Sections)
+                {
+                    //find the footer and replace
+                    Range footerRange = section.Footers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range;
+                    footerRange.Find.Text = "<Date>";
+                    footerRange.Find.Replacement.Text = DateTime.Now.ToString("HH:mm:ss").ToString();
+                    footerRange.Find.Execute(ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref replaceAll, ref missing, ref missing, ref missing, ref missing);
+
+                    //find the Header and replace
+                    Range headerRange = section.Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range;
+                    headerRange.Find.Text = "<CompanyName>";
+                    headerRange.Find.Replacement.Text = "冰冰无限公司";
+                    headerRange.Find.Execute(ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref replaceAll, ref missing, ref missing, ref missing, ref missing);
+
+                }
+
+
+
+
+
 
                 object tempFile = Server.MapPath("Temp/" + DateTime.Now.ToString("hhmmssffffff") + ".docx");
                 //save the new doc in temp file
