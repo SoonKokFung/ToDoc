@@ -54,21 +54,20 @@ namespace ToDoc
                     //find the footer and replace
                     Range footerRange = section.Footers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range;
                     footerRange.Find.Text = "<Date>";
-                    footerRange.Find.Replacement.Text = DateTime.Now.ToString("HH:mm:ss").ToString();
-                    footerRange.Find.Execute(ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref replaceAll, ref missing, ref missing, ref missing, ref missing);
+                    footerRange.Find.Replacement.Text = DateTime.Now.ToString("dd-MMM-yyyy HH:mm:ss").ToString();
+                    footerRange.Find.Execute(ref missing, ref missing, ref missing, ref missing,
+                        ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
+                        ref replaceAll, ref missing, ref missing, ref missing, ref missing);
 
                     //find the Header and replace
                     Range headerRange = section.Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range;
                     headerRange.Find.Text = "<CompanyName>";
                     headerRange.Find.Replacement.Text = "冰冰无限公司";
-                    headerRange.Find.Execute(ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref replaceAll, ref missing, ref missing, ref missing, ref missing);
+                    headerRange.Find.Execute(ref missing, ref missing, ref missing, ref missing,
+                        ref missing, ref missing, ref missing, ref missing, ref missing,
+                        ref missing, ref replaceAll, ref missing, ref missing, ref missing, ref missing);
 
                 }
-
-
-
-
-
 
                 object tempFile = Server.MapPath("Temp/" + DateTime.Now.ToString("hhmmssffffff") + ".docx");
                 //save the new doc in temp file
