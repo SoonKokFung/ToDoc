@@ -15,7 +15,7 @@ namespace ToDoc
 
         protected void Unnamed_Click(object sender, EventArgs e)
         {
-            createWordDocument(Server.MapPath("Example.docx"));
+            createWordDocument(Server.MapPath("Example.doc"));
         }
         private void createWordDocument(object filename)
         {
@@ -65,7 +65,7 @@ namespace ToDoc
 
                 }
 
-                object tempFile = Server.MapPath("Temp/" + DateTime.Now.ToString("ddmmyyyyhhmmssffffff") + ".docx");
+                object tempFile = Server.MapPath("Temp/" + DateTime.Now.ToString("ddmmyyyyhhmmssffffff") + ".doc");
                 //save the new doc in temp file
                 doc.SaveAs2(ref tempFile, ref missing, ref missing, ref missing,
                     ref missing, ref missing, ref missing,
