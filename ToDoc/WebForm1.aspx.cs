@@ -41,8 +41,12 @@ namespace ToDoc
                 //create a new doc same as the template
                 doc.Activate();
                 //insert the value to the new doc follow the id
-                findAndReplace.replace(wordApp, "<Title>", txtTitle.Text);
-                findAndReplace.replace(wordApp, "<name>", txtName.Text);
+                //findAndReplace.replace(wordApp, "<Title>", txtTitle.Text);
+                //findAndReplace.replace(wordApp, "<name>", txtName.Text);
+                wordApp.Selection.Find.Execute("<name>", missing, missing,
+                    missing, missing, missing, missing, missing, missing, txtName.Text);
+                wordApp.Selection.Find.Execute("<Title>", missing, missing,
+                    missing, missing, missing, missing, missing, missing, txtName.Text);
 
                 //edit Header and footer
                 foreach (Section section in doc.Sections)
